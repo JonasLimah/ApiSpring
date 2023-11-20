@@ -1,8 +1,8 @@
 package com.jonaslimah.test.services;
 
-
+import com.jonaslimah.test.Repositories.CategoryRepository;
+import com.jonaslimah.test.entities.Category;
 import com.jonaslimah.test.entities.Order;
-import com.jonaslimah.test.Repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,16 +10,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class OrderService {
-
+public class CategoryService {
     @Autowired
-    private OrderRepository repository;
-    public List<Order> findAll(){
+    private CategoryRepository repository;
+    public List<Category> findAll(){
         return repository.findAll();
     }
-    public Order findOrder(Long id){
-        Optional<Order> obj = repository.findById(id);
+    public Category findCategory(Long id){
+        Optional<Category> obj = repository.findById(id);
         return obj.get();
     }
-
 }

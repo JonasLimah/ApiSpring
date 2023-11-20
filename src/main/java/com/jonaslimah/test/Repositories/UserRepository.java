@@ -1,4 +1,4 @@
-package com.jonaslimah.test.userRepositories;
+package com.jonaslimah.test.Repositories;
 
 import com.jonaslimah.test.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
