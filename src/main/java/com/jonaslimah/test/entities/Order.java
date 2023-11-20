@@ -1,6 +1,7 @@
 package com.jonaslimah.test.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jonaslimah.test.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -18,14 +19,16 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "clientId")
     private User client;
+    private Integer orderStatus;
     public Order(){
 
     }
 
-    public Order(Long id, Instant instant, User client)  {
+    public Order(Long id, Instant instant, User client,OrderStatus orderStatus)  {
         this.id = id;
         this.instant = instant;
         this.client = client;
+       setStatus(orderStatus);
     }
 
     public Long getId() {
@@ -50,6 +53,17 @@ public class Order implements Serializable {
 
     public void setClient(User client) {
         this.client = client;
+    }
+
+    public OrderStatus getStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+    public void setStatus(OrderStatus status) {
+        if (status != null){
+            this.orderStatus= status.getCode();
+        }
+
     }
 
     @Override
