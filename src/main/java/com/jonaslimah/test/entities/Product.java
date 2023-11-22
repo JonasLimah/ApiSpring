@@ -1,6 +1,7 @@
 package com.jonaslimah.test.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -17,7 +18,16 @@ public class Product {
     private String description;
     private Double price;
     private String imageUrl;
-    @Transient
+    //relação muitos pra muitos
+
+    @ManyToMany
+    @JsonIgnore //ignora loop infinito causado pela relacao many
+    //juntando as tabelas e atribuindo as strangerkyes somente com ids
+    @JoinTable(name = "tb_product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+
     private Set<Category> categories = new HashSet<>();
     public Product(){}
 
